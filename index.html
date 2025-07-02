@@ -140,7 +140,6 @@
         
         const appId = 'fekra717-store';
         
-        // Dynamically configure Google Analytics
         if (firebaseConfig.measurementId) {
             const gaScript = document.createElement('script');
             gaScript.async = true;
@@ -152,7 +151,6 @@
             gtag('config', firebaseConfig.measurementId);
         }
 
-        // --- CMS: Product Data ---
         const collectionsData = {
             v1: [ { id: "1", name: "هودي V1-A", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+1" }, { id: "2", name: "هودي V1-B", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+2" }, { id: "3", name: "هودي V1-C", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+3" }, { id: "4", name: "هودي V1-D", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+4" } ],
             v2: [ { id: "5", name: "هودي V2-A", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+5" }, { id: "6", name: "هودي V2-B", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+6" }, { id: "7", name: "هودي V2-C", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+7" }, { id: "8", name: "هودي V2-D", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+8" } ],
@@ -285,7 +283,7 @@
 
             const listenForReviews = () => {
                 if (!db) return;
-                // Correct path with 3 segments: artifacts/{appId}/reviews
+                // المسار الصحيح المكون من 3 أجزاء
                 const q = query(collection(db, 'artifacts', appId, 'reviews'), firestoreOrderBy("createdAt", "desc"));
                 onSnapshot(q, (snapshot) => {
                     reviewsLoader.classList.add('hidden'); reviewsGrid.innerHTML = '';
@@ -305,7 +303,7 @@
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'جاري الإرسال...';
                 try {
-                    // *** FIXED LINE ***: Correct path with 3 segments
+                    // الكود المصحح: المسار الصحيح المكون من 3 أجزاء
                     await addDoc(collection(db, 'artifacts', appId, 'reviews'), { name, rating: parseInt(rating), comment, createdAt: serverTimestamp() });
                     reviewForm.reset();
                     showReviewFeedback("شكرًا لك! تم إرسال تقييمك بنجاح.", true);
@@ -344,7 +342,7 @@
 
                 if (isSuccess) {
                     try {
-                        // *** FIXED LINE ***: Correct path with 3 segments
+                        // الكود المصحح: المسار الصحيح المكون من 3 أجزاء
                         await addDoc(collection(db, 'artifacts', appId, 'orders'), {
                             orderId,
                             userId,
