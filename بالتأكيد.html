@@ -150,70 +150,41 @@
         import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy as firestoreOrderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-        // --- Firebase Config ---
-        let firebaseConfig;
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'fekra717-store';
-
-        if (typeof __firebase_config !== 'undefined' && __firebase_config !== '{}') {
-            // We are in the development environment, use the provided config.
-            firebaseConfig = JSON.parse(__firebase_config);
-        } else {
-            // We are on a live server (like GitHub Pages).
-            // This is now filled with your actual configuration.
-            firebaseConfig = {
-                apiKey: "AIzaSyCm8NrSg6pcpZlvHI9bXY1AuRH6A_1ynXY",
-                authDomain: "fekra-717-store.firebaseapp.com",
-                projectId: "fekra-717-store",
-                storageBucket: "fekra-717-store.appspot.com",
-                messagingSenderId: "336470683573",
-                appId: "1:336470683573:web:e494d1f447681e8ea073fc",
-                measurementId: "G-G9BWH63WMS"
-            };
-        }
-        
-        // Dynamically configure Google Analytics
-        if (firebaseConfig.measurementId) {
-            const gaScript = document.createElement('script');
-            gaScript.async = true;
-            gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${firebaseConfig.measurementId}`;
-            document.head.appendChild(gaScript);
-
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', firebaseConfig.measurementId);
-        }
-
-
-        // --- App Initialization ---
-        let db, auth, userId, isAuthReady = false;
-        try {
-            const app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    userId = user.uid; 
-                    isAuthReady = true; 
-                    console.log("Firebase connection is ready. Authenticated as:", userId);
-                    listenForReviews();
-                } else { 
-                    signInAnonymously(auth).catch(err => console.error("Anonymous sign-in failed:", err)); 
-                }
-            });
-        } catch (e) { 
-            console.error("Firebase initialization failed. This can happen if the config object is not filled correctly on a live server. Core features will be unavailable.", e); 
-        }
-
-        // --- CMS: Product Data ---
-        const collectionsData = {
-            v1: [ { id: "1", name: "هودي V1-A", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+1" }, { id: "2", name: "هودي V1-B", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+2" }, { id: "3", name: "هودي V1-C", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+3" }, { id: "4", name: "هودي V1-D", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+4" } ],
-            v2: [ { id: "5", name: "هودي V2-A", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+5" }, { id: "6", name: "هودي V2-B", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+6" }, { id: "7", name: "هودي V2-C", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+7" }, { id: "8", name: "هودي V2-D", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+8" } ],
-            v3: [ { id: "9", name: "هودي V3-A", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+9" }, { id: "10", name: "هودي V3-B", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+10" }, { id: "11", name: "هودي V3-C", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+11" }, { id: "12", name: "هودي V3-D", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+12" } ],
-            v4: [ { id: "13", name: "هودي V4-A", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+13" }, { id: "14", name: "هودي V4-B", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+14" }, { id: "15", name: "هودي V4-C", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+15" }, { id: "16", name: "هودي V4-D", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+16" } ]
-        };
-
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Firebase Config ---
+            let firebaseConfig;
+            const appId = typeof __app_id !== 'undefined' ? __app_id : 'fekra717-store';
+
+            if (typeof __firebase_config !== 'undefined' && __firebase_config !== '{}') {
+                // We are in the development environment, use the provided config.
+                firebaseConfig = JSON.parse(__firebase_config);
+            } else {
+                // We are on a live server (like GitHub Pages).
+                // This is now filled with your actual configuration.
+                firebaseConfig = {
+                    apiKey: "AIzaSyCm8NrSg6pcpZlvHI9bXY1AuRH6A_1ynXY",
+                    authDomain: "fekra-717-store.firebaseapp.com",
+                    projectId: "fekra-717-store",
+                    storageBucket: "fekra-717-store.appspot.com",
+                    messagingSenderId: "336470683573",
+                    appId: "1:336470683573:web:e494d1f447681e8ea073fc",
+                    measurementId: "G-G9BWH63WMS"
+                };
+            }
+            
+            // Dynamically configure Google Analytics
+            if (firebaseConfig.measurementId) {
+                const gaScript = document.createElement('script');
+                gaScript.async = true;
+                gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${firebaseConfig.measurementId}`;
+                document.head.appendChild(gaScript);
+
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', firebaseConfig.measurementId);
+            }
+
             // --- DOM Elements ---
             const pages = document.querySelectorAll('.page');
             const homeLink = document.getElementById('home-link');
@@ -247,6 +218,36 @@
             // --- State ---
             let cart = [];
             let currentOrderDetails = {};
+            let db, auth, userId, isAuthReady = false;
+
+            // --- App Initialization ---
+            try {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        userId = user.uid; 
+                        isAuthReady = true; 
+                        console.log("Firebase connection is ready. Authenticated as:", userId);
+                        listenForReviews();
+                        // **FIX:** Re-evaluate cart state now that auth is ready.
+                        updateCart(); 
+                    } else { 
+                        signInAnonymously(auth).catch(err => console.error("Anonymous sign-in failed:", err)); 
+                    }
+                });
+            } catch (e) { 
+                console.error("Firebase initialization failed. This can happen if the config object is not filled correctly on a live server. Core features will be unavailable.", e); 
+            }
+
+            // --- CMS: Product Data ---
+            const collectionsData = {
+                v1: [ { id: "1", name: "هودي V1-A", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+1" }, { id: "2", name: "هودي V1-B", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+2" }, { id: "3", name: "هودي V1-C", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+3" }, { id: "4", name: "هودي V1-D", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+4" } ],
+                v2: [ { id: "5", name: "هودي V2-A", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+5" }, { id: "6", name: "هودي V2-B", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+6" }, { id: "7", name: "هودي V2-C", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+7" }, { id: "8", name: "هودي V2-D", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+8" } ],
+                v3: [ { id: "9", name: "هودي V3-A", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+9" }, { id: "10", name: "هودي V3-B", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+10" }, { id: "11", name: "هودي V3-C", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+11" }, { id: "12", name: "هودي V3-D", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+12" } ],
+                v4: [ { id: "13", name: "هودي V4-A", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+13" }, { id: "14", name: "هودي V4-B", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+14" }, { id: "15", name: "هودي V4-C", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+15" }, { id: "16", name: "هودي V4-D", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+16" } ]
+            };
 
             // --- Page Navigation ---
             const showPage = (pageId) => { pages.forEach(p => p.classList.remove('active')); document.getElementById(pageId).classList.add('active'); window.scrollTo(0, 0); };
