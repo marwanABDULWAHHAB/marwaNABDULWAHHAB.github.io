@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fekra 717</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo for Arabic text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics 4 (GA4) Snippet -->
+    <!-- استبدل 'G-XXXXXXXXXX' بمعرّف القياس الخاص بك -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #1a2e26; color: #f5f5dc; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a2e26; }
+        ::-webkit-scrollbar-thumb { background: #d4c2a3; border-radius: 10px; }
+        .page { display: none; }
+        .page.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-backdrop { background-color: rgba(0, 0, 0, 0.7); }
+        .modal { transition: opacity 0.3s ease, transform 0.3s ease; }
+        .modal.hidden { transform: scale(0.95); opacity: 0; pointer-events: none; }
+        .collection-hero-card { background-size: cover; background-position: center; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .collection-hero-card:hover { transform: scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .rating-stars input[type="radio"] { display: none; }
+        .rating-stars label { font-size: 2rem; color: #6b7280; cursor: pointer; transition: color 0.2s; }
+        .rating-stars input[type="radio"]:checked ~ label,
+        .rating-stars label:hover,
+        .rating-stars label:hover ~ label { color: #f59e0b; }
+        .rating-stars { display: flex; flex-direction: row-reverse; justify-content: center; }
+        /* Disabled button style */
+        button:disabled {
+            cursor: not-allowed;
+            background-color: #4b5563; /* gray-600 */
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-[#1a2e26]/80 backdrop-blur-lg border-b border-beige/20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+            <a href="#" id="home-link" class="text-3xl font-black tracking-wider text-beige">fekra 717</a>
+            <button id="cart-button" class="relative text-beige hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+        <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <!-- Hero Collections -->
+            <section>
+                <h2 class="text-center text-4xl font-bold mb-10">الكولكشنات</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <a href="#" class="collection-link" data-collection="v1"><div class="collection-hero-card h-80 rounded-lg flex items-center justify-center text-5xl font-black text-white p-4" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/600x400/1a2e26/f5f5dc?text=v.1');">v.1</div></a>
+                    <a href="#" class="collection-link" data-collection="v2"><div class="collection-hero-card h-80 rounded-lg flex items-center justify-center text-5xl font-black text-white p-4" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/600x400/2a4a3e/f5f5dc?text=v.2');">v.2</div></a>
+                    <a href="#" class="collection-link" data-collection="v3"><div class="collection-hero-card h-80 rounded-lg flex items-center justify-center text-5xl font-black text-white p-4" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/600x400/3a6b56/f5f5dc?text=v.3');">v.3</div></a>
+                    <a href="#" class="collection-link" data-collection="v4"><div class="collection-hero-card h-80 rounded-lg flex items-center justify-center text-5xl font-black text-white p-4" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/600x400/498d72/f5f5dc?text=v.4');">v.4</div></a>
+                </div>
+            </section>
+
+            <!-- Our Story Link Section -->
+            <section class="mt-20 text-center">
+                <button id="story-link-btn" class="bg-beige text-[#1a2e26] font-bold py-3 px-8 rounded-lg hover:bg-beige/80 transition-all transform hover:scale-105 text-xl">تعرف على قصتنا</button>
+            </section>
+            
+            <!-- Customer Reviews Section -->
+            <section class="mt-20">
+                <h2 class="text-center text-4xl font-bold border-b-2 border-beige/30 pb-2 mb-10">آراء عملائنا</h2>
+                <div id="reviews-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <p id="reviews-loader" class="text-center col-span-full">جاري تحميل التقييمات...</p>
+                </div>
+            </section>
+
+            <!-- Add Review Section -->
+            <section class="mt-20 max-w-2xl mx-auto">
+                <h2 class="text-center text-4xl font-bold border-b-2 border-beige/30 pb-2 mb-10">أضف تقييمك</h2>
+                <form id="review-form" class="bg-[#2a4a3e] p-8 rounded-lg shadow-xl space-y-6">
+                    <div><label for="reviewer-name" class="block mb-2 font-bold">الاسم</label><input type="text" id="reviewer-name" required class="w-full p-3 rounded-md bg-[#1a2e26] border border-beige/30 focus:border-beige focus:ring-beige"></div>
+                    <div><label class="block mb-2 font-bold text-center">التقييم</label><div class="rating-stars"><input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label><input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label><input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label><input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label><input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label></div></div>
+                    <div><label for="review-comment" class="block mb-2 font-bold">رأيك</label><textarea id="review-comment" rows="4" required class="w-full p-3 rounded-md bg-[#1a2e26] border border-beige/30 focus:border-beige focus:ring-beige"></textarea></div>
+                    <button type="submit" id="review-submit-btn" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors text-lg">إرسال التقييم</button>
+                    <p id="review-feedback-msg" class="text-center hidden"></p>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- Collection Page -->
+    <div id="collection-page" class="page">
+        <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="flex items-center mb-8"><button class="back-to-home text-beige hover:text-white transition-colors ml-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></button><h2 id="collection-title" class="text-4xl font-bold border-b-2 border-beige/30 pb-2"></h2></div>
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
+        </main>
+    </div>
+
+    <!-- Story Page -->
+    <div id="story-page" class="page">
+        <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="flex items-center mb-8"><button class="back-to-home text-beige hover:text-white transition-colors ml-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></button><h2 class="text-4xl font-bold border-b-2 border-beige/30 pb-2">قصتنا</h2></div>
+            <div class="max-w-4xl mx-auto bg-[#2a4a3e] p-8 rounded-lg shadow-xl">
+                <p class="text-beige/90 leading-relaxed mb-8">هنا تبدأ الحكاية... "فكرة 717" لم تكن مجرد براند ملابس، بل هي رسالة...</p>
+                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden border-4 border-beige/20"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#14251f] mt-16 py-8"><div class="container mx-auto px-4 text-center text-beige/70"><p>&copy; 2025 fekra 717. جميع الحقوق محفوظة.</p><p class="mt-2">للتواصل: <a href="mailto:marwanabdulwahhab@gmail.com" class="hover:text-beige">marwanabdulwahhab@gmail.com</a></p></div></footer>
+    
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4"><div class="modal-backdrop fixed inset-0"></div><div class="bg-[#2a4a3e] rounded-lg shadow-2xl w-full max-w-lg mx-auto z-10 border border-beige/20 max-h-[90vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-beige/20"><h2 class="text-2xl font-bold">سلة التسوق</h2><button id="close-cart-btn" class="text-beige/70 hover:text-white text-3xl">&times;</button></div><div id="cart-items" class="p-6 space-y-4 overflow-y-auto"><p id="empty-cart-msg" class="text-center text-beige/70">سلة التسوق فارغة.</p></div><div class="p-6 mt-auto border-t border-beige/20"><div class="flex justify-between items-center text-xl font-bold mb-4"><span>الإجمالي:</span><span id="cart-total">0 EGP</span></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><button id="continue-shopping-btn" class="w-full bg-beige/80 text-[#1a2e26] font-bold py-3 px-4 rounded-lg hover:bg-beige/70 transition-colors">استكمال التسوق</button><button id="begin-checkout-btn" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed">الذهاب إلى الدفع</button></div></div></div></div>
+    
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="modal-backdrop fixed inset-0"></div>
+        <div class="bg-[#2a4a3e] rounded-lg shadow-2xl w-full max-w-md mx-auto z-10 border border-beige/20">
+            <div class="flex justify-between items-center p-4 border-b border-beige/20"><h2 class="text-2xl font-bold">إتمام الدفع</h2><button id="close-checkout-btn" class="text-beige/70 hover:text-white text-3xl">&times;</button></div>
+            <div id="payment-options" class="p-6 space-y-4">
+                <h3 class="text-xl font-bold text-center">اختر طريقة الدفع</h3>
+                <button class="payment-gateway-btn w-full flex items-center justify-center gap-3 bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700" data-method="Credit Card"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>بطاقة الائتمان</button>
+                <button class="payment-gateway-btn w-full flex items-center justify-center gap-3 bg-sky-500 text-white p-3 rounded-lg hover:bg-sky-600" data-method="PayPal"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.57.426C8.356.126 8.046 0 7.712 0H2.836C2.44 0 2.128.18 1.96.498L.024 4.29C-.03 4.41-.06 4.54-.06 4.682v.336c0 .288.12.552.312.744l2.892 2.892c.192.192.456.312.744.312h.336c.144 0 .276-.03.396-.084L8.57 7.926c.216-.3.324-.612.324-.924V.9C8.89.726 8.784.546 8.57.426zM15.43.426C15.644.126 15.954 0 16.288 0h4.876c.396 0 .708.18 .876.498l1.936 3.876c.054.12.084.252.084.396v-.336c0 .288-.12.552-.312.744l-2.892 2.892c-.192.192-.456.312-.744.312h-.336c-.144 0-.276-.03-.396-.084L15.43 7.926c-.216-.3-.324-.612-.324-.924V.9c-.312-.174-.42-.354-.21-.474zM8.57 15.426c.216.3.324.612.324.924v6.12c0 .174-.054.354-.216.474-.216.3-.528.426-.864.426H2.836c-.396 0-.708-.18-.876-.498L.024 18.51c-.054-.12-.084-.252-.084-.396v.336c0-.288.12-.552.312-.744l2.892-2.892c.192-.192.456-.312.744-.312h.336c.144 0 .276.03.396.084L8.57 15.426zM15.43 15.426c.216.3.528.426.864.426h4.876c.396 0 .708-.18 .876-.498l1.936-3.876c.054-.12.084-.252.084-.396v.336c0-.288-.12-.552-.312-.744l-2.892-2.892c-.192-.192-.456-.312-.744-.312h-.336c-.144 0-.276-.03-.396-.084L15.43 15.426c-.216-.3-.324-.612-.324-.924v6.12c0 .174.054.354.216.474z"/></svg>PayPal</button>
+                <div class="relative flex py-3 items-center"><div class="flex-grow border-t border-beige/30"></div><span class="flex-shrink mx-4 text-beige/80">أو</span><div class="flex-grow border-t border-beige/30"></div></div>
+                <div class="bg-[#1a2e26] p-4 rounded-lg border border-beige/30"><p class="text-center text-beige/80 mb-2">التحويل المباشر عبر Instapay</p><p class="text-2xl font-mono tracking-widest text-center" id="instapay-number">01012345678</p></div>
+            </div>
+            <div id="payment-processing" class="p-6 text-center hidden"><div role="status"><svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0492C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg><p class="mt-4">جاري معالجة الدفع...</p></div></div>
+            <div id="payment-result" class="p-6 text-center hidden"></div>
+        </div>
+    </div>
+    
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="hidden fixed bottom-0 inset-x-0 p-4 bg-[#2a4a3e] border-t border-beige/20 z-50">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-beige/90">نحن نستخدم ملفات تعريف الارتباط لضمان أفضل تجربة على موقعنا.</p>
+            <button id="accept-cookies" class="bg-beige text-[#1a2e26] font-bold py-2 px-6 rounded-lg hover:bg-beige/80 transition-colors">موافق</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy as firestoreOrderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+        // --- Firebase Config ---
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'fekra717-store';
+        let db, auth, userId, isAuthReady = false;
+        
+        // The isAuthReady flag is crucial. It prevents Firestore operations 
+        // from being called before the connection and authentication are complete,
+        // which is a common source of errors in web apps.
+        try {
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    userId = user.uid; 
+                    isAuthReady = true; 
+                    console.log("Firebase connection is ready. Authenticated as:", userId);
+                    listenForReviews();
+                } else { 
+                    signInAnonymously(auth).catch(err => console.error("Anonymous sign-in failed:", err)); 
+                }
+            });
+        } catch (e) { 
+            console.error("Firebase initialization failed. Core features will be unavailable.", e); 
+        }
+
+        // --- CMS: Product Data ---
+        const collectionsData = {
+            v1: [ { id: "1", name: "هودي V1-A", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+1" }, { id: "2", name: "هودي V1-B", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+2" }, { id: "3", name: "هودي V1-C", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+3" }, { id: "4", name: "هودي V1-D", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+4" } ],
+            v2: [ { id: "5", name: "هودي V2-A", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+5" }, { id: "6", name: "هودي V2-B", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+6" }, { id: "7", name: "هودي V2-C", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+7" }, { id: "8", name: "هودي V2-D", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+8" } ],
+            v3: [ { id: "9", name: "هودي V3-A", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+9" }, { id: "10", name: "هودي V3-B", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+10" }, { id: "11", name: "هودي V3-C", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+11" }, { id: "12", name: "هودي V3-D", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+12" } ],
+            v4: [ { id: "13", name: "هودي V4-A", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+13" }, { id: "14", name: "هودي V4-B", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+14" }, { id: "15", name: "هودي V4-C", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+15" }, { id: "16", name: "هودي V4-D", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+16" } ]
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DOM Elements ---
+            const pages = document.querySelectorAll('.page');
+            const homeLink = document.getElementById('home-link');
+            const storyLinkBtn = document.getElementById('story-link-btn');
+            const cartButton = document.getElementById('cart-button');
+            const backToHomeBtns = document.querySelectorAll('.back-to-home');
+            const collectionLinks = document.querySelectorAll('.collection-link');
+            const productGrid = document.getElementById('product-grid');
+            const collectionTitle = document.getElementById('collection-title');
+            const cartModal = document.getElementById('cart-modal');
+            const closeCartBtn = document.getElementById('close-cart-btn');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+            const emptyCartMsg = document.getElementById('empty-cart-msg');
+            const continueShoppingBtn = document.getElementById('continue-shopping-btn');
+            const beginCheckoutBtn = document.getElementById('begin-checkout-btn');
+            const checkoutModal = document.getElementById('checkout-modal');
+            const closeCheckoutBtn = document.getElementById('close-checkout-btn');
+            const paymentOptionsDiv = document.getElementById('payment-options');
+            const paymentProcessingDiv = document.getElementById('payment-processing');
+            const paymentResultDiv = document.getElementById('payment-result');
+            const paymentGatewayBtns = document.querySelectorAll('.payment-gateway-btn');
+            const reviewForm = document.getElementById('review-form');
+            const reviewsGrid = document.getElementById('reviews-grid');
+            const reviewsLoader = document.getElementById('reviews-loader');
+            const reviewFeedbackMsg = document.getElementById('review-feedback-msg');
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptCookiesBtn = document.getElementById('accept-cookies');
+
+            // --- State ---
+            let cart = [];
+            let currentOrderDetails = {};
+
+            // --- Page Navigation ---
+            const showPage = (pageId) => { pages.forEach(p => p.classList.remove('active')); document.getElementById(pageId).classList.add('active'); window.scrollTo(0, 0); };
+            collectionLinks.forEach(link => { link.addEventListener('click', (e) => { e.preventDefault(); renderCollection(link.dataset.collection); showPage('collection-page'); }); });
+            storyLinkBtn.addEventListener('click', () => showPage('story-page'));
+            const goHome = (e) => { if (e) e.preventDefault(); showPage('home-page'); };
+            backToHomeBtns.forEach(btn => btn.addEventListener('click', goHome));
+            homeLink.addEventListener('click', goHome);
+
+            // --- Rendering ---
+            const renderCollection = (collectionId) => {
+                const products = collectionsData[collectionId] || [];
+                collectionTitle.textContent = collectionId.toUpperCase();
+                productGrid.innerHTML = '';
+                products.forEach(p => {
+                    const card = document.createElement('div');
+                    card.className = "product-card bg-[#2a4a3e] rounded-lg shadow-xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300";
+                    card.innerHTML = `<img src="${p.img}" alt="${p.name}" class="w-full h-64 object-cover"><div class="p-4"><h3 class="text-xl font-bold">${p.name}</h3><p class="text-beige/80 mb-4">${p.price} EGP</p><button class="add-to-cart-btn w-full bg-beige text-[#1a2e26] font-bold py-2 px-4 rounded-lg hover:bg-beige/80" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-img="${p.img}">أضف إلى السلة</button></div>`;
+                    productGrid.appendChild(card);
+                });
+                attachAddToCartListeners();
+                gtag('event', 'view_item_list', { item_list_id: collectionId, item_list_name: `Collection ${collectionId.toUpperCase()}`, items: products.map((p, i) => ({ item_id: p.id, item_name: p.name, price: p.price, index: i + 1 })) });
+            };
+            
+            // --- Modal Logic ---
+            const openModal = (modal) => { modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; };
+            const closeModal = (modal) => { modal.classList.add('hidden'); if (!document.querySelector('.modal:not(.hidden)')) { document.body.style.overflow = 'auto'; }};
+
+            // --- Cart Logic ---
+            const updateCart = () => {
+                cartItemsContainer.innerHTML = '';
+                if (cart.length === 0) {
+                    cartItemsContainer.appendChild(emptyCartMsg); emptyCartMsg.style.display = 'block'; beginCheckoutBtn.disabled = true;
+                } else {
+                    emptyCartMsg.style.display = 'none'; beginCheckoutBtn.disabled = isAuthReady ? false : true;
+                    cart.forEach(item => {
+                        const el = document.createElement('div');
+                        el.className = 'flex items-center justify-between gap-4';
+                        el.innerHTML = `<div class="flex items-center gap-4"><img src="${item.img}" alt="${item.name}" class="w-16 h-20 object-cover rounded-md"><div><h4 class="font-bold">${item.name}</h4><p class="text-sm text-beige/70">${item.price} EGP x ${item.quantity}</p></div></div><div class="flex items-center gap-2"><button class="quantity-change text-lg font-bold" data-id="${item.id}" data-change="-1">-</button><span>${item.quantity}</span><button class="quantity-change text-lg font-bold" data-id="${item.id}" data-change="1">+</button><button class="remove-item text-red-500 hover:text-red-400 ml-4 text-2xl" data-id="${item.id}">&times;</button></div>`;
+                        cartItemsContainer.appendChild(el);
+                    });
+                }
+                const totalItems = cart.reduce((s, i) => s + i.quantity, 0);
+                const totalPrice = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+                cartCount.textContent = totalItems;
+                cartTotal.textContent = `${totalPrice} EGP`;
+            };
+            const addToCart = (id, name, price, img) => {
+                const existingItem = cart.find(item => item.id === id);
+                if (existingItem) { existingItem.quantity++; } else { cart.push({ id, name, price: Number(price), img, quantity: 1 }); }
+                updateCart();
+                gtag('event', 'add_to_cart', { currency: "EGP", value: Number(price), items: [{ item_id: id, item_name: name, price: Number(price), quantity: 1 }] });
+            };
+            const changeQuantity = (id, change) => { const item = cart.find(i => i.id === id); if (item) { item.quantity += change; if (item.quantity <= 0) cart = cart.filter(ci => ci.id !== id); } updateCart(); };
+            const removeItem = (id) => { cart = cart.filter(i => i.id !== id); updateCart(); };
+
+            // --- Review Logic ---
+            const showReviewFeedback = (message, isSuccess) => {
+                reviewFeedbackMsg.textContent = message;
+                reviewFeedbackMsg.className = `text-center p-2 rounded-md ${isSuccess ? 'text-green-400 bg-green-900/50' : 'text-red-400 bg-red-900/50'}`;
+                reviewFeedbackMsg.classList.remove('hidden');
+                setTimeout(() => reviewFeedbackMsg.classList.add('hidden'), 4000);
+            };
+
+            const listenForReviews = () => {
+                if (!db) return;
+                const q = query(collection(db, `artifacts/${appId}/public/reviews`), firestoreOrderBy("createdAt", "desc"));
+                onSnapshot(q, (snapshot) => {
+                    reviewsLoader.classList.add('hidden'); reviewsGrid.innerHTML = '';
+                    if (snapshot.empty) { reviewsGrid.innerHTML = `<p class="text-center col-span-full text-beige/70">لا توجد تقييمات بعد.</p>`; }
+                    else { snapshot.forEach(doc => { const r = doc.data(); const card = document.createElement('div'); card.className = 'bg-[#2a4a3e] p-6 rounded-lg shadow-lg'; const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating); card.innerHTML = `<div class="flex justify-between items-center mb-2"><h4 class="font-bold text-lg">${r.name}</h4><span class="text-amber-400 text-xl">${stars}</span></div><p class="text-beige/80">"${r.comment}"</p>`; reviewsGrid.appendChild(card); }); }
+                }, (error) => { console.error(error); reviewsLoader.textContent = "خطأ في تحميل التقييمات."; });
+            };
+            reviewForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (!isAuthReady) { showReviewFeedback("الخدمة غير جاهزة، يرجى الانتظار قليلاً والمحاولة مرة أخرى.", false); return; }
+                const name = document.getElementById('reviewer-name').value, rating = reviewForm.querySelector('input[name="rating"]:checked')?.value, comment = document.getElementById('review-comment').value;
+                if (!rating) { showReviewFeedback("يرجى اختيار عدد النجوم.", false); return; }
+                const submitBtn = document.getElementById('review-submit-btn');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'جاري الإرسال...';
+                try {
+                    await addDoc(collection(db, `artifacts/${appId}/public/reviews`), { name, rating: parseInt(rating), comment, createdAt: serverTimestamp() });
+                    reviewForm.reset();
+                    showReviewFeedback("شكرًا لك! تم إرسال تقييمك بنجاح.", true);
+                } catch (error) { console.error("Error adding review: ", error); showReviewFeedback("حدث خطأ أثناء إرسال التقييم.", false); }
+                finally { submitBtn.disabled = false; submitBtn.textContent = 'إرسال التقييم'; }
+            });
+            
+            // --- Checkout & Payment Logic ---
+            const handleBeginCheckout = () => {
+                if (!isAuthReady) { alert("خدمة الدفع غير جاهزة. يرجى الانتظار بضع ثوان والمحاولة مرة أخرى."); return; }
+                if (cart.length === 0) return;
+                const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+                const items = cart.map(i => ({ item_id: i.id, item_name: i.name, price: i.price, quantity: i.quantity }));
+                currentOrderDetails = { total, items };
+                gtag('event', 'begin_checkout', { currency: "EGP", value: total, items });
+                closeModal(cartModal); openModal(checkoutModal);
+                paymentOptionsDiv.classList.remove('hidden');
+                paymentProcessingDiv.classList.add('hidden');
+                paymentResultDiv.classList.add('hidden');
+            };
+
+            const processPayment = async (method) => {
+                if (!isAuthReady) { alert("خدمة الدفع غير جاهزة. يرجى الانتظار بضع ثوان والمحاولة مرة أخرى."); return; }
+                paymentOptionsDiv.classList.add('hidden');
+                paymentProcessingDiv.classList.remove('hidden');
+                await new Promise(resolve => setTimeout(resolve, 2500));
+                const isSuccess = Math.random() > 0.1;
+                const orderId = `FEKRA-${Date.now()}`;
+
+                if (isSuccess) {
+                    try {
+                        await addDoc(collection(db, `artifacts/${appId}/public/orders`), { orderId, items: currentOrderDetails.items, total: currentOrderDetails.total, paymentMethod: method, createdAt: serverTimestamp(), status: "paid" });
+                        gtag('event', 'purchase', { transaction_id: orderId, value: currentOrderDetails.total, currency: "EGP", items: currentOrderDetails.items });
+                        paymentResultDiv.innerHTML = `<h3 class="text-2xl font-bold text-green-400 mb-2">تم الدفع بنجاح!</h3><p>شكراً لك. معرّف طلبك هو:</p><p class="text-xl font-mono my-2 p-2 bg-black/20 rounded">${orderId}</p><p>سيتم شحن طلبك قريباً.</p>`;
+                        cart = []; updateCart();
+                    } catch (error) {
+                        console.error("Error saving order:", error);
+                        paymentResultDiv.innerHTML = `<h3 class="text-2xl font-bold text-red-400 mb-2">خطأ فني</h3><p>تم الدفع ولكن حدث خطأ أثناء حفظ طلبك. يرجى التواصل معنا فوراً.</p><p class="text-xs text-gray-400 mt-2">Error: ${error.message}</p>`;
+                    }
+                } else {
+                    paymentResultDiv.innerHTML = `<h3 class="text-2xl font-bold text-red-400 mb-2">فشل الدفع</h3><p>تعذرت معالجة عملية الدفع. يرجى المحاولة مرة أخرى أو اختيار طريقة دفع مختلفة.</p>`;
+                }
+                paymentProcessingDiv.classList.add('hidden');
+                paymentResultDiv.classList.remove('hidden');
+            };
+            
+            paymentGatewayBtns.forEach(btn => btn.addEventListener('click', () => processPayment(btn.dataset.method)));
+
+            // --- Cookie Logic ---
+            const handleCookieConsent = () => { if (localStorage.getItem('cookies_accepted') === 'true') { cookieBanner.classList.add('hidden'); } else { cookieBanner.classList.remove('hidden'); } };
+            acceptCookiesBtn.addEventListener('click', () => { localStorage.setItem('cookies_accepted', 'true'); cookieBanner.classList.add('hidden'); });
+
+            // --- Event Listeners ---
+            const attachAddToCartListeners = () => {
+                document.querySelectorAll('.add-to-cart-btn').forEach(button => { button.replaceWith(button.cloneNode(true)); });
+                document.querySelectorAll('.add-to-cart-btn').forEach(button => { button.addEventListener('click', (e) => { const { id, name, price, img } = e.target.dataset; addToCart(id, name, price, img); openModal(cartModal); }); });
+            };
+            cartButton.addEventListener('click', () => {
+                openModal(cartModal);
+                if (cart.length > 0) { gtag('event', 'view_cart', { currency: "EGP", value: cart.reduce((s, i) => s + (i.price * i.quantity), 0), items: cart.map(i => ({ item_id: i.id, item_name: i.name, price: i.price, quantity: i.quantity })) }); }
+            });
+            closeCartBtn.addEventListener('click', () => closeModal(cartModal));
+            continueShoppingBtn.addEventListener('click', () => closeModal(cartModal));
+            document.querySelectorAll('.modal-backdrop').forEach(b => { b.addEventListener('click', () => { closeModal(cartModal); closeModal(checkoutModal); }); });
+            cartItemsContainer.addEventListener('click', (e) => { const t = e.target.closest('button'); if (!t) return; if (t.classList.contains('quantity-change')) { changeQuantity(t.dataset.id, parseInt(t.dataset.change, 10)); } if (t.classList.contains('remove-item')) { removeItem(t.dataset.id); } });
+            beginCheckoutBtn.addEventListener('click', handleBeginCheckout);
+            closeCheckoutBtn.addEventListener('click', () => closeModal(checkoutModal));
+            
+            // --- Initial setup ---
+            updateCart();
+            attachAddToCartListeners();
+            handleCookieConsent();
+        });
+    </script>
+</body>
+</html>
