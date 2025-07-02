@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -10,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics 4 (GA4) will be configured dynamically via JavaScript -->
     
     <style>
         body { font-family: 'Cairo', sans-serif; background-color: #1a2e26; color: #f5f5dc; }
@@ -30,7 +33,12 @@
         .rating-stars label:hover,
         .rating-stars label:hover ~ label { color: #f59e0b; }
         .rating-stars { display: flex; flex-direction: row-reverse; justify-content: center; }
-        button:disabled { cursor: not-allowed; background-color: #4b5563; opacity: 0.7; }
+        /* Disabled button style */
+        button:disabled {
+            cursor: not-allowed;
+            background-color: #4b5563; /* gray-600 */
+            opacity: 0.7;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -110,7 +118,7 @@
     <footer class="bg-[#14251f] mt-16 py-8"><div class="container mx-auto px-4 text-center text-beige/70"><p>&copy; 2025 fekra 717. جميع الحقوق محفوظة.</p><p class="mt-2">للتواصل: <a href="mailto:marwanabdulwahhab@gmail.com" class="hover:text-beige">marwanabdulwahhab@gmail.com</a></p></div></footer>
     
     <!-- Cart Modal -->
-    <div id="cart-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4"><div class="modal-backdrop fixed inset-0"></div><div class="bg-[#2a4a3e] rounded-lg shadow-2xl w-full max-w-lg mx-auto z-10 border border-beige/20 max-h-[90vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-beige/20"><h2 class="text-2xl font-bold">سلة التسوق</h2><button id="close-cart-btn" class="text-beige/70 hover:text-white text-3xl">&times;</button></div><div id="cart-items" class="p-6 space-y-4 overflow-y-auto"><p id="empty-cart-msg" class="text-center text-beige/70">سلة التسوق فارغة.</p></div><div class="p-6 mt-auto border-t border-beige/20"><div class="flex justify-between items-center text-xl font-bold mb-4"><span>الإجمالي:</span><span id="cart-total">0 EGP</span></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><button id="continue-shopping-btn" class="w-full bg-beige/80 text-[#1a2e26] font-bold py-3 px-4 rounded-lg hover:bg-beige/70 transition-colors">استكمال التسوق</button><button id="begin-checkout-btn" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors">الذهاب إلى الدفع</button></div></div></div></div>
+    <div id="cart-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4"><div class="modal-backdrop fixed inset-0"></div><div class="bg-[#2a4a3e] rounded-lg shadow-2xl w-full max-w-lg mx-auto z-10 border border-beige/20 max-h-[90vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-beige/20"><h2 class="text-2xl font-bold">سلة التسوق</h2><button id="close-cart-btn" class="text-beige/70 hover:text-white text-3xl">&times;</button></div><div id="cart-items" class="p-6 space-y-4 overflow-y-auto"><p id="empty-cart-msg" class="text-center text-beige/70">سلة التسوق فارغة.</p></div><div class="p-6 mt-auto border-t border-beige/20"><div class="flex justify-between items-center text-xl font-bold mb-4"><span>الإجمالي:</span><span id="cart-total">0 EGP</span></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><button id="continue-shopping-btn" class="w-full bg-beige/80 text-[#1a2e26] font-bold py-3 px-4 rounded-lg hover:bg-beige/70 transition-colors">استكمال التسوق</button><button id="begin-checkout-btn" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed">الذهاب إلى الدفع</button></div></div></div></div>
     
     <!-- Checkout Modal -->
     <div id="checkout-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -120,7 +128,7 @@
             <div id="payment-options" class="p-6 space-y-4">
                 <h3 class="text-xl font-bold text-center">اختر طريقة الدفع</h3>
                 <button class="payment-gateway-btn w-full flex items-center justify-center gap-3 bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700" data-method="Credit Card"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>بطاقة الائتمان</button>
-                <button class="payment-gateway-btn w-full flex items-center justify-center gap-3 bg-sky-500 text-white p-3 rounded-lg hover:bg-sky-600" data-method="PayPal"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.57.426C8.356.126 8.046 0 7.712 0H2.836C2.44 0 2.128.18 1.96.498L.024 4.29C-.03 4.41-.06 4.54-.06 4.682v.336c0 .288.12.552.312.744l2.892 2.892c.192.192.456.312.744.312h.336c.144 0 .276-.03.396-.084L8.57 7.926c.216-.3.324-.612.324-.924V.9C8.89.726 8.784.546 8.57.426zM15.43.426C15.644.126 15.954 0 16.288 0h4.876c.396 0 .708.18 .876.498l1.936 3.876c.054.12.084.252.084.396v-.336c0 .288-.12.552-.312.744l-2.892 2.892c-.192.192-.456.312-.744.312h-.336c-.144 0-.276-.03-.396-.084L15.43 7.926c-.216-.3-.324-.612-.324-.924V.9c-.312-.174-.42-.354-.21-.474zM8.57 15.426c.216.3.324.612.324.924v6.12c0 .174-.054.354-.216.474-.216.3-.528.426-.864.426H2.836c-.396 0-.708-.18-.876-.498L.024 18.51c-.054-.12-.084-.252-.084-.396v.336c0-.288.12-.552.312-.744l2.892-2.892c.192-.192.456-.312.744-.312h.336c.144 0 .276.03.396.084L8.57 15.426zM15.43 15.426c.216.3.528.426.864.426h4.876c.396 0 .708-.18 .876-.498l1.936-3.876c.054-.12.084-.252.084-.396v.336c0-.288-.12-.552-.312-.744l-2.892-2.892c-.192-.192-.456-.312-.744-.312h-.336c-.144 0-.276-.03-.396-.084L15.43 15.426c-.216-.3-.324-.612-.324-.924v6.12c0 .174.054.354.216.474z"/></svg>PayPal</button>
+                <button class="payment-gateway-btn w-full flex items-center justify-center gap-3 bg-sky-500 text-white p-3 rounded-lg hover:bg-sky-600" data-method="PayPal"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.57.426C8.356.126 8.046 0 7.712 0H2.836C2.44 0 2.128.18 1.96.498L.024 4.29C-.03 4.41-.06 4.54-.06 4.682v.336c0 .288.12.552.312.744l2.892 2.892c.192.192.456.312.744.312h.336c.144 0 .276-.03.396-.084L8.57 7.926c.216-.3.324-.612.324-.924V.9C8.89.726 8.784.546 8.57.426zM15.43.426C15.644.126 15.954 0 16.288 0h4.876c.396 0 .708.18 .876.498l1.936 3.876c.054.12.084.252.084.396v-.336c0 .288-.12.552-.312.744l-2.892 2.892c-.192-.192-.456-.312-.744.312h-.336c-.144 0-.276-.03-.396-.084L15.43 7.926c-.216-.3-.324-.612-.324-.924V.9c-.312-.174-.42-.354-.21-.474zM8.57 15.426c.216.3.324.612.324.924v6.12c0 .174-.054.354-.216.474-.216.3-.528.426-.864.426H2.836c-.396 0-.708-.18-.876-.498L.024 18.51c-.054-.12-.084-.252-.084-.396v.336c0-.288.12-.552.312-.744l2.892-2.892c.192-.192.456-.312.744-.312h.336c.144 0 .276.03.396.084L8.57 15.426zM15.43 15.426c.216.3.528.426.864.426h4.876c.396 0 .708-.18 .876-.498l1.936-3.876c.054-.12.084-.252.084-.396v.336c0-.288-.12-.552-.312-.744l-2.892-2.892c-.192-.192-.456-.312-.744-.312h-.336c-.144 0-.276-.03-.396-.084L15.43 15.426c-.216-.3-.324-.612-.324-.924v6.12c0 .174.054.354.216.474z"/></svg>PayPal</button>
                 <div class="relative flex py-3 items-center"><div class="flex-grow border-t border-beige/30"></div><span class="flex-shrink mx-4 text-beige/80">أو</span><div class="flex-grow border-t border-beige/30"></div></div>
                 <div class="bg-[#1a2e26] p-4 rounded-lg border border-beige/30"><p class="text-center text-beige/80 mb-2">التحويل المباشر عبر Instapay</p><p class="text-2xl font-mono tracking-widest text-center" id="instapay-number">01012345678</p></div>
             </div>
@@ -143,37 +151,49 @@
         import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy as firestoreOrderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
+        // --- Firebase Config ---
+        let firebaseConfig;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'fekra717-store';
+
+        if (typeof __firebase_config !== 'undefined' && __firebase_config !== '{}') {
+            // We are in the development environment, use the provided config.
+            firebaseConfig = JSON.parse(__firebase_config);
+        } else {
+            // We are on a live server (like GitHub Pages).
+            // This is now filled with your actual configuration.
+            firebaseConfig = {
+                apiKey: "AIzaSyCm8NrSg6pcpZlvHI9bXY1AuRH6A_1ynXY",
+                authDomain: "fekra-717-store.firebaseapp.com",
+                projectId: "fekra-717-store",
+                storageBucket: "fekra-717-store.appspot.com",
+                messagingSenderId: "336470683573",
+                appId: "1:336470683573:web:e494d1f447681e8ea073fc",
+                measurementId: "G-G9BWH63WMS"
+            };
+        }
+        
+        // Dynamically configure Google Analytics
+        if (firebaseConfig.measurementId) {
+            const gaScript = document.createElement('script');
+            gaScript.async = true;
+            gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${firebaseConfig.measurementId}`;
+            document.head.appendChild(gaScript);
+
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', firebaseConfig.measurementId);
+        }
+
+        // --- CMS: Product Data ---
+        const collectionsData = {
+            v1: [ { id: "1", name: "هودي V1-A", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+1" }, { id: "2", name: "هودي V1-B", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+2" }, { id: "3", name: "هودي V1-C", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+3" }, { id: "4", name: "هودي V1-D", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+4" } ],
+            v2: [ { id: "5", name: "هودي V2-A", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+5" }, { id: "6", name: "هودي V2-B", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+6" }, { id: "7", name: "هودي V2-C", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+7" }, { id: "8", name: "هودي V2-D", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+8" } ],
+            v3: [ { id: "9", name: "هودي V3-A", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+9" }, { id: "10", name: "هودي V3-B", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+10" }, { id: "11", name: "هودي V3-C", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+11" }, { id: "12", name: "هودي V3-D", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+12" } ],
+            v4: [ { id: "13", name: "هودي V4-A", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+13" }, { id: "14", name: "هودي V4-B", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+14" }, { id: "15", name: "هودي V4-C", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+15" }, { id: "16", name: "هودي V4-D", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+16" } ]
+        };
+
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Firebase Config ---
-            let firebaseConfig;
-            const appId = typeof __app_id !== 'undefined' ? __app_id : 'fekra717-store';
-
-            if (typeof __firebase_config !== 'undefined' && __firebase_config !== '{}') {
-                firebaseConfig = JSON.parse(__firebase_config);
-            } else {
-                firebaseConfig = {
-                    apiKey: "AIzaSyCm8NrSg6pcpZlvHI9bXY1AuRH6A_1ynXY",
-                    authDomain: "fekra-717-store.firebaseapp.com",
-                    projectId: "fekra-717-store",
-                    storageBucket: "fekra-717-store.appspot.com",
-                    messagingSenderId: "336470683573",
-                    appId: "1:336470683573:web:e494d1f447681e8ea073fc",
-                    measurementId: "G-G9BWH63WMS"
-                };
-            }
-            
-            // --- GA4 Config ---
-            if (firebaseConfig.measurementId) {
-                const gaScript = document.createElement('script');
-                gaScript.async = true;
-                gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${firebaseConfig.measurementId}`;
-                document.head.appendChild(gaScript);
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', firebaseConfig.measurementId);
-            }
-
             // --- DOM Elements ---
             const pages = document.querySelectorAll('.page');
             const homeLink = document.getElementById('home-link');
@@ -209,7 +229,7 @@
             let currentOrderDetails = {};
             let db, auth, userId, isAuthReady = false;
 
-            // --- App Initialization ---
+            // --- App Initialization (Firebase etc.) ---
             try {
                 const app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
@@ -218,25 +238,17 @@
                     if (user) {
                         userId = user.uid; 
                         isAuthReady = true; 
-                        console.log("Firebase connection is ready.");
+                        console.log("Firebase connection is ready. Authenticated as:", userId);
                         listenForReviews();
-                        updateCart(); 
+                        updateCart(); // <<< [ADDED] The primary fix: Update cart UI once auth is ready.
                     } else { 
                         signInAnonymously(auth).catch(err => console.error("Anonymous sign-in failed:", err)); 
                     }
                 });
             } catch (e) { 
-                console.error("Firebase initialization failed.", e); 
+                console.error("Firebase initialization failed. This can happen if the config object is not filled correctly on a live server. Core features will be unavailable.", e); 
             }
-
-            // --- CMS: Product Data ---
-            const collectionsData = {
-                v1: [ { id: "1", name: "هودي V1-A", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+1" }, { id: "2", name: "هودي V1-B", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+2" }, { id: "3", name: "هودي V1-C", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+3" }, { id: "4", name: "هودي V1-D", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+4" } ],
-                v2: [ { id: "5", name: "هودي V2-A", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+5" }, { id: "6", name: "هودي V2-B", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+6" }, { id: "7", name: "هودي V2-C", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+7" }, { id: "8", name: "هودي V2-D", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+8" } ],
-                v3: [ { id: "9", name: "هودي V3-A", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+9" }, { id: "10", name: "هودي V3-B", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+10" }, { id: "11", name: "هودي V3-C", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+11" }, { id: "12", name: "هودي V3-D", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+12" } ],
-                v4: [ { id: "13", name: "هودي V4-A", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+13" }, { id: "14", name: "هودي V4-B", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+14" }, { id: "15", name: "هودي V4-C", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+15" }, { id: "16", name: "هودي V4-D", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+16" } ]
-            };
-
+            
             // --- Page Navigation ---
             const showPage = (pageId) => { pages.forEach(p => p.classList.remove('active')); document.getElementById(pageId).classList.add('active'); window.scrollTo(0, 0); };
             collectionLinks.forEach(link => { link.addEventListener('click', (e) => { e.preventDefault(); renderCollection(link.dataset.collection); showPage('collection-page'); }); });
@@ -265,15 +277,22 @@
             const closeModal = (modal) => { modal.classList.add('hidden'); if (!document.querySelector('.modal:not(.hidden)')) { document.body.style.overflow = 'auto'; }};
 
             // --- Cart Logic ---
-            const updateCart = () => {
+            const updateCart = () => { // <<< [MODIFIED] Logic enhanced for better user feedback
                 cartItemsContainer.innerHTML = '';
                 if (cart.length === 0) {
-                    cartItemsContainer.appendChild(emptyCartMsg);
+                    cartItemsContainer.appendChild(emptyCartMsg); 
                     emptyCartMsg.style.display = 'block';
                     beginCheckoutBtn.disabled = true;
+                    beginCheckoutBtn.textContent = 'الذهاب إلى الدفع';
                 } else {
                     emptyCartMsg.style.display = 'none';
-                    beginCheckoutBtn.disabled = !isAuthReady; // **CRITICAL FIX**
+                    if (isAuthReady) {
+                        beginCheckoutBtn.disabled = false;
+                        beginCheckoutBtn.textContent = 'الذهاب إلى الدفع';
+                    } else {
+                        beginCheckoutBtn.disabled = true;
+                        beginCheckoutBtn.textContent = 'جاري تجهيز الدفع...';
+                    }
                     cart.forEach(item => {
                         const el = document.createElement('div');
                         el.className = 'flex items-center justify-between gap-4';
