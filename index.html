@@ -11,8 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <!-- Google Analytics 4 (GA4) will be configured dynamically via JavaScript -->
-    
     <style>
         body { font-family: 'Cairo', sans-serif; background-color: #1a2e26; color: #f5f5dc; }
         ::-webkit-scrollbar { width: 8px; }
@@ -32,12 +30,7 @@
         .rating-stars label:hover,
         .rating-stars label:hover ~ label { color: #f59e0b; }
         .rating-stars { display: flex; flex-direction: row-reverse; justify-content: center; }
-        /* Disabled button style */
-        button:disabled {
-            cursor: not-allowed;
-            background-color: #4b5563; /* gray-600 */
-            opacity: 0.7;
-        }
+        button:disabled { cursor: not-allowed; background-color: #4b5563; opacity: 0.7; }
     </style>
 </head>
 <body class="antialiased">
@@ -117,7 +110,7 @@
     <footer class="bg-[#14251f] mt-16 py-8"><div class="container mx-auto px-4 text-center text-beige/70"><p>&copy; 2025 fekra 717. جميع الحقوق محفوظة.</p><p class="mt-2">للتواصل: <a href="mailto:marwanabdulwahhab@gmail.com" class="hover:text-beige">marwanabdulwahhab@gmail.com</a></p></div></footer>
     
     <!-- Cart Modal -->
-    <div id="cart-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4"><div class="modal-backdrop fixed inset-0"></div><div class="bg-[#2a4a3e] rounded-lg shadow-2xl w-full max-w-lg mx-auto z-10 border border-beige/20 max-h-[90vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-beige/20"><h2 class="text-2xl font-bold">سلة التسوق</h2><button id="close-cart-btn" class="text-beige/70 hover:text-white text-3xl">&times;</button></div><div id="cart-items" class="p-6 space-y-4 overflow-y-auto"><p id="empty-cart-msg" class="text-center text-beige/70">سلة التسوق فارغة.</p></div><div class="p-6 mt-auto border-t border-beige/20"><div class="flex justify-between items-center text-xl font-bold mb-4"><span>الإجمالي:</span><span id="cart-total">0 EGP</span></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><button id="continue-shopping-btn" class="w-full bg-beige/80 text-[#1a2e26] font-bold py-3 px-4 rounded-lg hover:bg-beige/70 transition-colors">استكمال التسوق</button><button id="begin-checkout-btn" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed">الذهاب إلى الدفع</button></div></div></div></div>
+    <div id="cart-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4"><div class="modal-backdrop fixed inset-0"></div><div class="bg-[#2a4a3e] rounded-lg shadow-2xl w-full max-w-lg mx-auto z-10 border border-beige/20 max-h-[90vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-beige/20"><h2 class="text-2xl font-bold">سلة التسوق</h2><button id="close-cart-btn" class="text-beige/70 hover:text-white text-3xl">&times;</button></div><div id="cart-items" class="p-6 space-y-4 overflow-y-auto"><p id="empty-cart-msg" class="text-center text-beige/70">سلة التسوق فارغة.</p></div><div class="p-6 mt-auto border-t border-beige/20"><div class="flex justify-between items-center text-xl font-bold mb-4"><span>الإجمالي:</span><span id="cart-total">0 EGP</span></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><button id="continue-shopping-btn" class="w-full bg-beige/80 text-[#1a2e26] font-bold py-3 px-4 rounded-lg hover:bg-beige/70 transition-colors">استكمال التسوق</button><button id="begin-checkout-btn" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors">الذهاب إلى الدفع</button></div></div></div></div>
     
     <!-- Checkout Modal -->
     <div id="checkout-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -156,11 +149,8 @@
             const appId = typeof __app_id !== 'undefined' ? __app_id : 'fekra717-store';
 
             if (typeof __firebase_config !== 'undefined' && __firebase_config !== '{}') {
-                // We are in the development environment, use the provided config.
                 firebaseConfig = JSON.parse(__firebase_config);
             } else {
-                // We are on a live server (like GitHub Pages).
-                // This is now filled with your actual configuration.
                 firebaseConfig = {
                     apiKey: "AIzaSyCm8NrSg6pcpZlvHI9bXY1AuRH6A_1ynXY",
                     authDomain: "fekra-717-store.firebaseapp.com",
@@ -172,13 +162,12 @@
                 };
             }
             
-            // Dynamically configure Google Analytics
+            // --- GA4 Config ---
             if (firebaseConfig.measurementId) {
                 const gaScript = document.createElement('script');
                 gaScript.async = true;
                 gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${firebaseConfig.measurementId}`;
                 document.head.appendChild(gaScript);
-
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -229,16 +218,15 @@
                     if (user) {
                         userId = user.uid; 
                         isAuthReady = true; 
-                        console.log("Firebase connection is ready. Authenticated as:", userId);
+                        console.log("Firebase connection is ready.");
                         listenForReviews();
-                        // **FIX:** Re-evaluate cart state now that auth is ready.
                         updateCart(); 
                     } else { 
                         signInAnonymously(auth).catch(err => console.error("Anonymous sign-in failed:", err)); 
                     }
                 });
             } catch (e) { 
-                console.error("Firebase initialization failed. This can happen if the config object is not filled correctly on a live server. Core features will be unavailable.", e); 
+                console.error("Firebase initialization failed.", e); 
             }
 
             // --- CMS: Product Data ---
@@ -280,9 +268,12 @@
             const updateCart = () => {
                 cartItemsContainer.innerHTML = '';
                 if (cart.length === 0) {
-                    cartItemsContainer.appendChild(emptyCartMsg); emptyCartMsg.style.display = 'block'; beginCheckoutBtn.disabled = true;
+                    cartItemsContainer.appendChild(emptyCartMsg);
+                    emptyCartMsg.style.display = 'block';
+                    beginCheckoutBtn.disabled = true;
                 } else {
-                    emptyCartMsg.style.display = 'none'; beginCheckoutBtn.disabled = !isAuthReady;
+                    emptyCartMsg.style.display = 'none';
+                    beginCheckoutBtn.disabled = !isAuthReady; // **CRITICAL FIX**
                     cart.forEach(item => {
                         const el = document.createElement('div');
                         el.className = 'flex items-center justify-between gap-4';
@@ -406,3 +397,4 @@
     </script>
 </body>
 </html>
+
