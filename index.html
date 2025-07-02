@@ -9,14 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    
     <style>
         body { font-family: 'Cairo', sans-serif; background-color: #1a2e26; color: #f5f5dc; }
         ::-webkit-scrollbar { width: 8px; }
@@ -99,14 +91,14 @@
             <div class="flex items-center mb-8"><button class="back-to-home text-beige hover:text-white transition-colors ml-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></button><h2 class="text-4xl font-bold border-b-2 border-beige/30 pb-2">قصتنا</h2></div>
             <div class="max-w-4xl mx-auto bg-[#2a4a3e] p-8 rounded-lg shadow-xl">
                 <p class="text-beige/90 leading-relaxed mb-8">هنا تبدأ الحكاية... "فكرة 717" لم تكن مجرد براند ملابس، بل هي رسالة...</p>
-                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden border-4 border-beige/20"><iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden border-4 border-beige/20"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
             </div>
         </main>
     </div>
 
     <footer class="bg-[#14251f] mt-16 py-8"><div class="container mx-auto px-4 text-center text-beige/70"><p>© 2025 fekra 717. جميع الحقوق محفوظة.</p><p class="mt-2">للتواصل: <a href="mailto:marwanabdulwahhab@gmail.com" class="hover:text-beige">marwanabdulwahhab@gmail.com</a></p></div></footer>
     
-    <div id="cart-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4"><div class="modal-backdrop fixed inset-0"></div><div class="bg-[#2a4a3e] rounded-lg shadow-2xl w-full max-w-lg mx-auto z-10 border border-beige/20 max-h-[90vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-beige/20"><h2 class="text-2xl font-bold">سلة التسوق</h2><button id="close-cart-btn" class="text-beige/70 hover:text-white text-3xl">×</button></div><div id="cart-items" class="p-6 space-y-4 overflow-y-auto"><p id="empty-cart-msg" class="text-center text-beige/70">سلة التسوق فارغة.</p></div><div class="p-6 mt-auto border-t border-beige/20"><div class="flex justify-between items-center text-xl font-bold mb-4"><span>الإجمالي:</span><span id="cart-total">0 EGP</span></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><button id="continue-shopping-btn" class="w-full bg-beige/80 text-[#1a2e26] font-bold py-3 px-4 rounded-lg hover:bg-beige/70 transition-colors">استكمال التسوق</button><button id="begin-checkout-btn" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed">الذهاب إلى الدفع</button></div></div></div></div>
+    <div id="cart-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4"><div class="modal-backdrop fixed inset-0"></div><div class="bg-[#2a4a3e] rounded-lg shadow-2xl w-full max-w-lg mx-auto z-10 border border-beige/20 max-h-[90vh] flex flex-col"><div class="flex justify-between items-center p-4 border-b border-beige/20"><h2 class="text-2xl font-bold">سلة التسوق</h2><button id="close-cart-btn" class="text-beige/70 hover:text-white text-3xl">×</button></div><div id="cart-items" class="p-6 space-y-4 overflow-y-auto"><p id="empty-cart-msg" class="text-center text-beige/70">سلة التسوق فارغة.</p></div><div class="p-6 mt-auto border-t border-beige/20"><div class="flex justify-between items-center text-xl font-bold mb-4"><span>الإجمالي:</span><span id="cart-total">0 EGP</span></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><button id="continue-shopping-btn" class="w-full bg-beige/80 text-[#1a2e26] font-bold py-3 px-4 rounded-lg hover:bg-beige/70 transition-colors">استكمال التسوق</button><button id="begin-checkout-btn" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors">الذهاب إلى الدفع</button></div><p id="checkout-feedback" class="text-center text-yellow-400 text-sm mt-2 hidden sm:col-span-2"></p></div></div></div>
     
     <div id="checkout-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4">
         <div class="modal-backdrop fixed inset-0"></div>
@@ -115,7 +107,7 @@
             <div id="payment-options" class="p-6 space-y-4">
                 <h3 class="text-xl font-bold text-center">اختر طريقة الدفع</h3>
                 <button class="payment-gateway-btn w-full flex items-center justify-center gap-3 bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700" data-method="Credit Card"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>بطاقة الائتمان</button>
-                <button class="payment-gateway-btn w-full flex items-center justify-center gap-3 bg-sky-500 text-white p-3 rounded-lg hover:bg-sky-600" data-method="PayPal"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.57.426C8.356.126 8.046 0 7.712 0H2.836C2.44 0 2.128.18 1.96.498L.024 4.29C-.03 4.41-.06 4.54-.06 4.682v.336c0 .288.12.552.312.744l2.892 2.892c.192.192.456.312.744.312h.336c.144 0 .276-.03.396-.084L8.57 7.926c.216-.3.324-.612.324-.924V.9C8.89.726 8.784.546 8.57.426zM15.43.426C15.644.126 15.954 0 16.288 0h4.876c.396 0 .708.18 .876.498l1.936 3.876c.054.12.084.252.084.396v-.336c0 .288-.12.552-.312.744l-2.892 2.892c-.192.192-.456.312-.744.312h-.336c-.144 0-.276-.03-.396-.084L15.43 7.926c-.216-.3-.324-.612-.324-.924V.9c-.312-.174-.42-.354-.21-.474zM8.57 15.426c.216.3.324.612.324.924v6.12c0 .174-.054.354-.216.474-.216.3-.528.426-.864.426H2.836c-.396 0-.708-.18-.876-.498L.024 18.51c-.054-.12-.084-.252-.084-.396v.336c0-.288.12-.552.312-.744l2.892-2.892c.192.192.456-.312.744-.312h.336c.144 0 .276.03.396.084L8.57 15.426zM15.43 15.426c.216.3.528.426.864.426h4.876c.396 0 .708-.18 .876-.498l1.936-3.876c.054-.12.084-.252.084-.396v.336c0-.288-.12-.552-.312-.744l-2.892-2.892c-.192-.192-.456-.312-.744-.312h-.336c-.144 0-.276-.03-.396-.084L15.43 15.426c-.216-.3-.324-.612-.324-.924v6.12c0 .174.054.354.216.474z"/></svg>PayPal</button>
+                <button class="payment-gateway-btn w-full flex items-center justify-center gap-3 bg-sky-500 text-white p-3 rounded-lg hover:bg-sky-600" data-method="PayPal"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.57.426C8.356.126 8.046 0 7.712 0H2.836C2.44 0 2.128.18 1.96.498L.024 4.29C-.03 4.41-.06 4.54-.06 4.682v.336c0 .288.12.552.312.744l2.892 2.892c.192.192.456.312.744.312h.336c.144 0 .276-.03.396-.084L8.57 7.926c.216-.3.324-.612.324-.924V.9C8.89.726 8.784.546 8.57.426zM15.43.426C15.644.126 15.954 0 16.288 0h4.876c.396 0 .708.18 .876.498l1.936 3.876c.054.12.084.252.084.396v-.336c0 .288-.12.552-.312.744l-2.892 2.892c-.192.192-.456.312-.744.312h-.336c-.144 0-.276-.03-.396-.084L15.43 7.926c-.216-.3-.324-.612-.324-.924V.9c-.312-.174-.42-.354-.21-.474zM8.57 15.426c.216.3.324.612.324.924v6.12c0 .174-.054.354-.216.474-.216.3-.528.426-.864.426H2.836c-.396 0-.708-.18-.876-.498L.024 18.51c-.054-.12-.084-.252-.084-.396v.336c0-.288.12-.552.312-.744l2.892-2.892c.192-.192.456-.312.744-.312h.336c.144 0 .276.03.396.084L8.57 15.426zM15.43 15.426c.216.3.528.426.864.426h4.876c.396 0 .708-.18 .876-.498l1.936-3.876c.054-.12.084-.252.084-.396v.336c0-.288-.12-.552-.312-.744l-2.892-2.892c-.192-.192-.456-.312-.744-.312h-.336c-.144 0-.276-.03-.396-.084L15.43 15.426c-.216-.3-.324-.612-.324-.924v6.12c0 .174.054.354.216.474z"/></svg>PayPal</button>
                 <div class="relative flex py-3 items-center"><div class="flex-grow border-t border-beige/30"></div><span class="flex-shrink mx-4 text-beige/80">أو</span><div class="flex-grow border-t border-beige/30"></div></div>
                 <div class="bg-[#1a2e26] p-4 rounded-lg border border-beige/30"><p class="text-center text-beige/80 mb-2">التحويل المباشر عبر Instapay</p><p class="text-2xl font-mono tracking-widest text-center" id="instapay-number">01012345678</p></div>
             </div>
@@ -136,51 +128,33 @@
         import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy as firestoreOrderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-        // --- Firebase Config ---
-        // ==========================================================================================
-        // ٢. الصق إعدادات Firebase الخاصة بك هنا بدلاً من هذا المثال
-        // يمكنك الحصول عليها من: Firebase Console > Project settings > General > Your apps > Web app
-        // ==========================================================================================
-        const firebaseConfig = {
-            apiKey: "AIzaSy...YOUR_API_KEY",
-            authDomain: "your-project-id.firebaseapp.com",
-            projectId: "your-project-id",
-            storageBucket: "your-project-id.appspot.com",
-            messagingSenderId: "1234567890",
-            appId: "1:1234567890:web:abcdef123456",
-            measurementId: "G-ABCDEFGHIJ" // اختياري
-        };
-        
-        const appId = 'fekra717-store'; // يمكنك ترك هذا كما هو
-        let db, auth, userId, isAuthReady = false;
-        
-        try {
-            const app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    userId = user.uid; 
-                    isAuthReady = true; 
-                    console.log("Firebase connection is ready. Authenticated as:", userId);
-                    listenForReviews();
-                } else { 
-                    signInAnonymously(auth).catch(err => console.error("Anonymous sign-in failed:", err)); 
-                }
-            });
-        } catch (e) { 
-            console.error("Firebase initialization failed. Core features will be unavailable.", e); 
-        }
-
-        // --- CMS: Product Data ---
-        const collectionsData = {
-            v1: [ { id: "1", name: "هودي V1-A", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+1" }, { id: "2", name: "هودي V1-B", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+2" }, { id: "3", name: "هودي V1-C", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+3" }, { id: "4", name: "هودي V1-D", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+4" } ],
-            v2: [ { id: "5", name: "هودي V2-A", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+5" }, { id: "6", name: "هودي V2-B", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+6" }, { id: "7", name: "هودي V2-C", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+7" }, { id: "8", name: "هودي V2-D", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+8" } ],
-            v3: [ { id: "9", name: "هودي V3-A", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+9" }, { id: "10", name: "هودي V3-B", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+10" }, { id: "11", name: "هودي V3-C", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+11" }, { id: "12", name: "هودي V3-D", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+12" } ],
-            v4: [ { id: "13", name: "هودي V4-A", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+13" }, { id: "14", name: "هودي V4-B", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+14" }, { id: "15", name: "هودي V4-C", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+15" }, { id: "16", name: "هودي V4-D", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+16" } ]
-        };
-
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Firebase Config ---
+            // تم استبدال الكود التجريبي بالكود الحقيقي الخاص بك
+            const firebaseConfig = {
+                apiKey: "AIzaSyCm8NrSg6pcpZlvHI9bXY1AuRH6A_1ynXY",
+                authDomain: "fekra-717-store.firebaseapp.com",
+                projectId: "fekra-717-store",
+                storageBucket: "fekra-717-store.appspot.com",
+                messagingSenderId: "336470683573",
+                appId: "1:336470683573:web:e494d1f447681e8ea073fc",
+                measurementId: "G-G9BWH63WMS"
+            };
+            
+            const appId = 'fekra717-store';
+            
+            // --- GA4 Config ---
+            if (firebaseConfig.measurementId) {
+                const gaScript = document.createElement('script');
+                gaScript.async = true;
+                gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${firebaseConfig.measurementId}`;
+                document.head.appendChild(gaScript);
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', firebaseConfig.measurementId);
+            }
+
             // --- DOM Elements ---
             const pages = document.querySelectorAll('.page');
             const homeLink = document.getElementById('home-link');
@@ -208,12 +182,42 @@
             const reviewsGrid = document.getElementById('reviews-grid');
             const reviewsLoader = document.getElementById('reviews-loader');
             const reviewFeedbackMsg = document.getElementById('review-feedback-msg');
+            const checkoutFeedback = document.getElementById('checkout-feedback');
             const cookieBanner = document.getElementById('cookie-banner');
             const acceptCookiesBtn = document.getElementById('accept-cookies');
 
             // --- State ---
             let cart = [];
             let currentOrderDetails = {};
+            let db, auth, userId, isAuthReady = false;
+
+            // --- App Initialization ---
+            try {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        userId = user.uid; 
+                        isAuthReady = true; 
+                        console.log("Firebase connection is ready.");
+                        listenForReviews();
+                        updateCart(); 
+                    } else { 
+                        signInAnonymously(auth).catch(err => console.error("Anonymous sign-in failed:", err)); 
+                    }
+                });
+            } catch (e) { 
+                console.error("Firebase initialization failed.", e); 
+            }
+
+            // --- CMS: Product Data ---
+            const collectionsData = {
+                v1: [ { id: "1", name: "هودي V1-A", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+1" }, { id: "2", name: "هودي V1-B", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+2" }, { id: "3", name: "هودي V1-C", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+3" }, { id: "4", name: "هودي V1-D", price: 1200, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+4" } ],
+                v2: [ { id: "5", name: "هودي V2-A", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+5" }, { id: "6", name: "هودي V2-B", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+6" }, { id: "7", name: "هودي V2-C", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+7" }, { id: "8", name: "هودي V2-D", price: 1350, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+8" } ],
+                v3: [ { id: "9", name: "هودي V3-A", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+9" }, { id: "10", name: "هودي V3-B", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+10" }, { id: "11", name: "هودي V3-C", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+11" }, { id: "12", name: "هودي V3-D", price: 1500, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+12" } ],
+                v4: [ { id: "13", name: "هودي V4-A", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+13" }, { id: "14", name: "هودي V4-B", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+14" }, { id: "15", name: "هودي V4-C", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+15" }, { id: "16", name: "هودي V4-D", price: 1600, img: "https://placehold.co/400x500/2a4a3e/f5f5dc?text=Hoodie+16" } ]
+            };
 
             // --- Page Navigation ---
             const showPage = (pageId) => { pages.forEach(p => p.classList.remove('active')); document.getElementById(pageId).classList.add('active'); window.scrollTo(0, 0); };
@@ -235,7 +239,7 @@
                     productGrid.appendChild(card);
                 });
                 attachAddToCartListeners();
-                gtag('event', 'view_item_list', { item_list_id: collectionId, item_list_name: `Collection ${collectionId.toUpperCase()}`, items: products.map((p, i) => ({ item_id: p.id, item_name: p.name, price: p.price, index: i + 1 })) });
+                if(window.gtag) gtag('event', 'view_item_list', { item_list_id: collectionId, item_list_name: `Collection ${collectionId.toUpperCase()}`, items: products.map((p, i) => ({ item_id: p.id, item_name: p.name, price: p.price, index: i + 1 })) });
             };
             
             // --- Modal Logic ---
@@ -246,9 +250,19 @@
             const updateCart = () => {
                 cartItemsContainer.innerHTML = '';
                 if (cart.length === 0) {
-                    cartItemsContainer.appendChild(emptyCartMsg); emptyCartMsg.style.display = 'block'; beginCheckoutBtn.disabled = true;
+                    cartItemsContainer.appendChild(emptyCartMsg);
+                    emptyCartMsg.style.display = 'block';
+                    beginCheckoutBtn.disabled = true;
+                    beginCheckoutBtn.textContent = 'الذهاب إلى الدفع';
                 } else {
-                    emptyCartMsg.style.display = 'none'; beginCheckoutBtn.disabled = isAuthReady ? false : true;
+                    emptyCartMsg.style.display = 'none';
+                    if (isAuthReady) {
+                        beginCheckoutBtn.disabled = false;
+                        beginCheckoutBtn.textContent = 'الذهاب إلى الدفع';
+                    } else {
+                        beginCheckoutBtn.disabled = true;
+                        beginCheckoutBtn.textContent = 'جاري تجهيز الدفع...';
+                    }
                     cart.forEach(item => {
                         const el = document.createElement('div');
                         el.className = 'flex items-center justify-between gap-4';
@@ -265,7 +279,7 @@
                 const existingItem = cart.find(item => item.id === id);
                 if (existingItem) { existingItem.quantity++; } else { cart.push({ id, name, price: Number(price), img, quantity: 1 }); }
                 updateCart();
-                gtag('event', 'add_to_cart', { currency: "EGP", value: Number(price), items: [{ item_id: id, item_name: name, price: Number(price), quantity: 1 }] });
+                if(window.gtag) gtag('event', 'add_to_cart', { currency: "EGP", value: Number(price), items: [{ item_id: id, item_name: name, price: Number(price), quantity: 1 }] });
             };
             const changeQuantity = (id, change) => { const item = cart.find(i => i.id === id); if (item) { item.quantity += change; if (item.quantity <= 0) cart = cart.filter(ci => ci.id !== id); } updateCart(); };
             const removeItem = (id) => { cart = cart.filter(i => i.id !== id); updateCart(); };
@@ -305,12 +319,17 @@
             
             // --- Checkout & Payment Logic ---
             const handleBeginCheckout = () => {
-                if (!isAuthReady) { alert("خدمة الدفع غير جاهزة. يرجى الانتظار بضع ثوان والمحاولة مرة أخرى."); return; }
+                if (!isAuthReady) {
+                    checkoutFeedback.textContent = 'الخدمة قيد التجهيز، يرجى الانتظار لحظات...';
+                    checkoutFeedback.classList.remove('hidden');
+                    setTimeout(() => checkoutFeedback.classList.add('hidden'), 3000);
+                    return;
+                }
                 if (cart.length === 0) return;
                 const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
                 const items = cart.map(i => ({ item_id: i.id, item_name: i.name, price: i.price, quantity: i.quantity }));
                 currentOrderDetails = { total, items };
-                gtag('event', 'begin_checkout', { currency: "EGP", value: total, items });
+                if(window.gtag) gtag('event', 'begin_checkout', { currency: "EGP", value: total, items });
                 closeModal(cartModal); openModal(checkoutModal);
                 paymentOptionsDiv.classList.remove('hidden');
                 paymentProcessingDiv.classList.add('hidden');
@@ -328,7 +347,7 @@
                 if (isSuccess) {
                     try {
                         await addDoc(collection(db, `artifacts/${appId}/public/orders`), { orderId, items: currentOrderDetails.items, total: currentOrderDetails.total, paymentMethod: method, createdAt: serverTimestamp(), status: "paid" });
-                        gtag('event', 'purchase', { transaction_id: orderId, value: currentOrderDetails.total, currency: "EGP", items: currentOrderDetails.items });
+                        if(window.gtag) gtag('event', 'purchase', { transaction_id: orderId, value: currentOrderDetails.total, currency: "EGP", items: currentOrderDetails.items });
                         paymentResultDiv.innerHTML = `<h3 class="text-2xl font-bold text-green-400 mb-2">تم الدفع بنجاح!</h3><p>شكراً لك. معرّف طلبك هو:</p><p class="text-xl font-mono my-2 p-2 bg-black/20 rounded">${orderId}</p><p>سيتم شحن طلبك قريباً.</p>`;
                         cart = []; updateCart();
                     } catch (error) {
@@ -355,7 +374,7 @@
             };
             cartButton.addEventListener('click', () => {
                 openModal(cartModal);
-                if (cart.length > 0) { gtag('event', 'view_cart', { currency: "EGP", value: cart.reduce((s, i) => s + (i.price * i.quantity), 0), items: cart.map(i => ({ item_id: i.id, item_name: i.name, price: i.price, quantity: i.quantity })) }); }
+                if (cart.length > 0 && window.gtag) { gtag('event', 'view_cart', { currency: "EGP", value: cart.reduce((s, i) => s + (i.price * i.quantity), 0), items: cart.map(i => ({ item_id: i.id, item_name: i.name, price: i.price, quantity: i.quantity })) }); }
             });
             closeCartBtn.addEventListener('click', () => closeModal(cartModal));
             continueShoppingBtn.addEventListener('click', () => closeModal(cartModal));
