@@ -161,7 +161,6 @@
         };
 
         document.addEventListener('DOMContentLoaded', () => {
-            // --- DOM Elements ---
             const pages = document.querySelectorAll('.page');
             const homeLink = document.getElementById('home-link');
             const storyLinkBtn = document.getElementById('story-link-btn');
@@ -192,12 +191,10 @@
             const cookieBanner = document.getElementById('cookie-banner');
             const acceptCookiesBtn = document.getElementById('accept-cookies');
 
-            // --- State ---
             let cart = [];
             let currentOrderDetails = {};
             let db, auth, userId, isAuthReady = false;
 
-            // --- App Initialization (Firebase etc.) ---
             try {
                 const app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
@@ -217,7 +214,6 @@
                 console.error("Firebase initialization failed.", e); 
             }
             
-            // --- Page Navigation ---
             const showPage = (pageId) => { pages.forEach(p => p.classList.remove('active')); document.getElementById(pageId).classList.add('active'); window.scrollTo(0, 0); };
             collectionLinks.forEach(link => { link.addEventListener('click', (e) => { e.preventDefault(); renderCollection(link.dataset.collection); showPage('collection-page'); }); });
             storyLinkBtn.addEventListener('click', () => showPage('story-page'));
@@ -225,7 +221,6 @@
             backToHomeBtns.forEach(btn => btn.addEventListener('click', goHome));
             homeLink.addEventListener('click', goHome);
 
-            // --- Rendering ---
             const renderCollection = (collectionId) => {
                 const products = collectionsData[collectionId] || [];
                 collectionTitle.textContent = collectionId.toUpperCase();
@@ -240,11 +235,9 @@
                 if(window.gtag) gtag('event', 'view_item_list', { item_list_id: collectionId, item_list_name: `Collection ${collectionId.toUpperCase()}`, items: products.map((p, i) => ({ item_id: p.id, item_name: p.name, price: p.price, index: i + 1 })) });
             };
             
-            // --- Modal Logic ---
             const openModal = (modal) => { modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; };
             const closeModal = (modal) => { modal.classList.add('hidden'); if (!document.querySelector('.modal:not(.hidden)')) { document.body.style.overflow = 'auto'; }};
 
-            // --- Cart Logic ---
             const updateCart = () => {
                 cartItemsContainer.innerHTML = '';
                 checkoutFeedback.classList.add('hidden');
@@ -283,17 +276,17 @@
             const changeQuantity = (id, change) => { const item = cart.find(i => i.id === id); if (item) { item.quantity += change; if (item.quantity <= 0) cart = cart.filter(ci => ci.id !== id); } updateCart(); };
             const removeItem = (id) => { cart = cart.filter(i => i.id !== id); updateCart(); };
 
-            // --- Review Logic ---
             const showReviewFeedback = (message, isSuccess) => {
                 reviewFeedbackMsg.textContent = message;
                 reviewFeedbackMsg.className = `text-center p-2 rounded-md ${isSuccess ? 'text-green-400 bg-green-900/50' : 'text-red-400 bg-red-900/50'}`;
                 reviewFeedbackMsg.classList.remove('hidden');
-                setTimeout(() => reviewFeedbackMsg.classList.add('hidden'), 4000);
+                setTimeout(() => reviewFeedbackMsg.classList.add('hidden'), 5000);
             };
 
             const listenForReviews = () => {
                 if (!db) return;
-                const q = query(collection(db, `artifacts/${appId}/public/reviews`), firestoreOrderBy("createdAt", "desc"));
+                // Correct path with 3 segments: artifacts/{appId}/reviews
+                const q = query(collection(db, 'artifacts', appId, 'reviews'), firestoreOrderBy("createdAt", "desc"));
                 onSnapshot(q, (snapshot) => {
                     reviewsLoader.classList.add('hidden'); reviewsGrid.innerHTML = '';
                     if (snapshot.empty) { reviewsGrid.innerHTML = `<p class="text-center col-span-full text-beige/70">لا توجد تقييمات بعد.</p>`; }
@@ -312,19 +305,19 @@
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'جاري الإرسال...';
                 try {
-                    await addDoc(collection(db, `artifacts/${appId}/public/reviews`), { name, rating: parseInt(rating), comment, createdAt: serverTimestamp() });
+                    // *** FIXED LINE ***: Correct path with 3 segments
+                    await addDoc(collection(db, 'artifacts', appId, 'reviews'), { name, rating: parseInt(rating), comment, createdAt: serverTimestamp() });
                     reviewForm.reset();
                     showReviewFeedback("شكرًا لك! تم إرسال تقييمك بنجاح.", true);
                 } catch (error) { 
                     console.error("Error adding review: ", error); 
-                    showReviewFeedback(`حدث خطأ: ${error.message}. تأكد من تحديث قواعد الأمان في Firebase.`, false); 
+                    showReviewFeedback(`حدث خطأ: ${error.message}`, false); 
                 } finally { 
                     submitBtn.disabled = false; 
                     submitBtn.textContent = 'إرسال التقييم'; 
                 }
             });
             
-            // --- Checkout & Payment Logic ---
             const handleBeginCheckout = () => {
                 if (!isAuthReady) {
                     checkoutFeedback.textContent = 'الخدمة قيد التجهيز، يرجى الانتظار لحظات...';
@@ -345,17 +338,16 @@
             const processPayment = async (method) => {
                 paymentOptionsDiv.classList.add('hidden');
                 paymentProcessingDiv.classList.remove('hidden');
-                
-                await new Promise(resolve => setTimeout(resolve, 2500)); // Simulate gateway processing time
-                
-                const isSuccess = Math.random() > 0.1; // Simulate success/failure
+                await new Promise(resolve => setTimeout(resolve, 2500));
+                const isSuccess = Math.random() > 0.1;
                 const orderId = `FEKRA-${Date.now()}`;
 
                 if (isSuccess) {
                     try {
-                        await addDoc(collection(db, `artifacts/${appId}/public/orders`), {
+                        // *** FIXED LINE ***: Correct path with 3 segments
+                        await addDoc(collection(db, 'artifacts', appId, 'orders'), {
                             orderId,
-                            userId, // Storing the user's anonymous ID
+                            userId,
                             items: currentOrderDetails.items,
                             total: currentOrderDetails.total,
                             paymentMethod: method,
@@ -368,7 +360,7 @@
                         updateCart();
                     } catch (error) {
                         console.error("Error saving order:", error);
-                        paymentResultDiv.innerHTML = `<h3 class="text-2xl font-bold text-red-400 mb-2">خطأ فني</h3><p>تم الدفع ولكن حدث خطأ أثناء حفظ طلبك. يرجى التواصل معنا فوراً.</p><p class="text-xs text-gray-400 mt-2">Error: ${error.message}</p><p class="text-xs text-yellow-300 mt-1">تلميح: قد يكون السبب هو قواعد الأمان في Firebase.</p>`;
+                        paymentResultDiv.innerHTML = `<h3 class="text-2xl font-bold text-red-400 mb-2">خطأ فني</h3><p>تم الدفع ولكن حدث خطأ أثناء حفظ طلبك. يرجى التواصل معنا فوراً.</p><p class="text-xs text-gray-400 mt-2">Error: ${error.message}</p>`;
                     }
                 } else {
                     paymentResultDiv.innerHTML = `<h3 class="text-2xl font-bold text-red-400 mb-2">فشل الدفع</h3><p>تعذرت معالجة عملية الدفع. يرجى المحاولة مرة أخرى أو اختيار طريقة دفع مختلفة.</p>`;
@@ -379,11 +371,9 @@
             
             paymentGatewayBtns.forEach(btn => btn.addEventListener('click', () => processPayment(btn.dataset.method)));
 
-            // --- Cookie Logic ---
             const handleCookieConsent = () => { if (localStorage.getItem('cookies_accepted') === 'true') { cookieBanner.classList.add('hidden'); } else { cookieBanner.classList.remove('hidden'); } };
             acceptCookiesBtn.addEventListener('click', () => { localStorage.setItem('cookies_accepted', 'true'); cookieBanner.classList.add('hidden'); });
 
-            // --- Event Listeners ---
             const attachAddToCartListeners = () => {
                 document.querySelectorAll('.add-to-cart-btn').forEach(button => { button.replaceWith(button.cloneNode(true)); });
                 document.querySelectorAll('.add-to-cart-btn').forEach(button => { button.addEventListener('click', (e) => { const { id, name, price, img } = e.target.dataset; addToCart(id, name, price, img); openModal(cartModal); }); });
@@ -399,7 +389,6 @@
             beginCheckoutBtn.addEventListener('click', handleBeginCheckout);
             closeCheckoutBtn.addEventListener('click', () => closeModal(checkoutModal));
             
-            // --- Initial setup ---
             updateCart();
             attachAddToCartListeners();
             handleCookieConsent();
